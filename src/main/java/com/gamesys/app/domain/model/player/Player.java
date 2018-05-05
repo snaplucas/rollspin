@@ -22,17 +22,15 @@ public class Player {
         List<String> list = Arrays.asList(playerString.split(","));
         if (list.size() == 1) {
             return new Player(list.get(0));
-        } else {
-            return getAllArgumentsPlayer(list);
         }
+        return getAllArgumentsPlayer(list);
     }
 
     private static Player getAllArgumentsPlayer(List<String> list) {
         if (list.size() == 3) {
-            return new Player(list.get(0), Double.parseDouble(list.get(1)), Double.parseDouble(list.get(1)));
+            return new Player(list.get(0), Double.parseDouble(list.get(1)), Double.parseDouble(list.get(2)));
         } else {
             return null;
         }
     }
-
 }

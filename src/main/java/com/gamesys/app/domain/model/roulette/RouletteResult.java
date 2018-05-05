@@ -1,7 +1,7 @@
 package com.gamesys.app.domain.model.roulette;
 
 import com.gamesys.app.domain.model.player.Player;
-import com.gamesys.app.domain.model.player.PlayerResult;
+import com.gamesys.app.application.dto.PlayerResultDto;
 
 import java.util.List;
 
@@ -10,11 +10,10 @@ class RouletteResult {
     private final String skipLine = "\n";
     private final String spaceBetweenWords = "       ";
 
-
-    String getDefaultGameResult(List<PlayerResult> playerResults, int resultNumber) {
+    String getDefaultGameResult(List<PlayerResultDto> playerResultDtos, int resultNumber) {
         StringBuilder row = new StringBuilder("\n");
         row.append(getDefaultHeader(resultNumber));
-        playerResults.forEach(x -> row.append(x.getPlayerName())
+        playerResultDtos.forEach(x -> row.append(x.getPlayerName())
                 .append(spaceBetweenWords)
                 .append(x.getBet()).append(spaceBetweenWords)
                 .append(spaceBetweenWords)

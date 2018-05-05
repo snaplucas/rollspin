@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class NumberBet implements BetKind {
 
-    private final int number;
+    private final int value;
 
     @Override
     public double payoff() {
@@ -14,6 +14,6 @@ public class NumberBet implements BetKind {
 
     @Override
     public String toString() {
-        return String.valueOf(number);
+        return String.valueOf(value);
     }
 }

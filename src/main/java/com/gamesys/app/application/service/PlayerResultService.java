@@ -1,22 +1,22 @@
-package com.gamesys.app.application;
+package com.gamesys.app.application.service;
 
 import com.gamesys.app.domain.model.bet.*;
 import com.gamesys.app.domain.model.player.Outcome;
-import com.gamesys.app.domain.model.player.PlayerResult;
+import com.gamesys.app.application.dto.PlayerResultDto;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class PlayerResultService {
 
-    public PlayerResult getPlayerResult(Bet bet, int resultNumber) {
+    public PlayerResultDto getPlayerResult(Bet bet, int resultNumber) {
         Outcome outcome = Outcome.LOSE;
         double winnings = 0.0;
         if (hasPlayerWon(bet.getBetKind(), resultNumber)) {
             winnings = bet.getBetKind().payoff() * bet.getAmount();
             outcome = Outcome.WIN;
         }
-        return new PlayerResult(bet.getPlayer().getName(), bet.getBetKind().toString(), outcome, winnings);
+        return new PlayerResultDto(bet.getPlayer().getName(), bet.getBetKind().toString(), outcome, winnings);
     }
 
     private boolean hasPlayerWon(BetKind betKind, int resultNumber) {

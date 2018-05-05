@@ -8,9 +8,13 @@ import lombok.Getter;
 @Getter
 public class Bet {
 
-    private final Player player;
-    private final BetKind betKind;
-    private final double amount;
+    private Player player;
+    private BetKind betKind;
+    private double amount;
+
+    public Bet() {
+        this.amount = 0.0;
+    }
 
     public boolean isValidAmount() {
         return amount > 0;
