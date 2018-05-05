@@ -1,7 +1,9 @@
-package com.gamesys.app.roulette.domain.model.player;
+package com.gamesys.app.domain.model.player;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
 @AllArgsConstructor
 public class PlayerResult {
 
@@ -9,11 +11,5 @@ public class PlayerResult {
     private String bet;
     private Outcome outcome;
     private double winnings;
-
-    @Override
-    public String toString() {
-        // TODO: format output
-        return "";
-    }
 
 }

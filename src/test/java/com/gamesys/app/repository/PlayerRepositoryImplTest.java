@@ -1,12 +1,13 @@
 package com.gamesys.app.repository;
 
-import com.gamesys.app.roulette.domain.model.player.Player;
-import com.gamesys.app.roulette.repository.PlayerRepositoryImpl;
+import com.gamesys.app.domain.model.player.Player;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Objects;
 
 public class PlayerRepositoryImplTest {
 
@@ -15,13 +16,17 @@ public class PlayerRepositoryImplTest {
         String filePath = String.valueOf(Paths.get(getClass().getClassLoader().getResource("fileTest.txt").toURI()));
         PlayerRepositoryImpl playerRepository = new PlayerRepositoryImpl(filePath);
         List<Player> players = playerRepository.getPlayers();
-        System.out.println(players);
-        // TODO: assert
 
+        Assert.assertTrue(players.size() == 2);
+        Assert.assertTrue(players.stream().anyMatch(x -> Objects.equals(x.getName(), "Barbara")));
     }
 
     @Test
-    public void getPlayersFail() {
+    public void getPlayersFail() throws URISyntaxException {
+        String filePath = String.valueOf(Paths.get(getClass().getClassLoader().getResource("fileError.txt").toURI()));
+        PlayerRepositoryImpl playerRepository = new PlayerRepositoryImpl(filePath);
+        List<Player> players = playerRepository.getPlayers();
 
+        Assert.assertEquals(players, null);
     }
 }

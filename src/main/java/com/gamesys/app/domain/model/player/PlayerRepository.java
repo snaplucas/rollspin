@@ -1,4 +1,4 @@
-package com.gamesys.app.roulette.domain.model.player;
+package com.gamesys.app.domain.model.player;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.gamesys.app.roulette.domain.model.bet;
+package com.gamesys.app.domain.model.bet;
 
 import lombok.AllArgsConstructor;
 
@@ -13,7 +13,7 @@ public class NumberBet implements BetKind {
     }
 
     @Override
-    public String valueToString() {
+    public String toString() {
         return String.valueOf(number);
     }
 }

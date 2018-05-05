@@ -1,9 +1,10 @@
 package com.gamesys.app;
 
-import com.gamesys.app.roulette.domain.model.player.Player;
-import com.gamesys.app.roulette.domain.model.player.PlayerRepository;
-import com.gamesys.app.roulette.domain.model.roulette.Table;
-import com.gamesys.app.roulette.repository.PlayerRepositoryImpl;
+import com.gamesys.app.application.PlayerResultService;
+import com.gamesys.app.domain.model.player.Player;
+import com.gamesys.app.domain.model.player.PlayerRepository;
+import com.gamesys.app.domain.model.roulette.Roulette;
+import com.gamesys.app.repository.PlayerRepositoryImpl;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.Scanner;
 
 public class Game {
 
-    private Table table;
+    private Roulette roulette;
 
     public Game(String[] args) {
         String arg = getFirstArgument(args);
@@ -22,7 +23,12 @@ public class Game {
         }
         PlayerRepository playerRepository = new PlayerRepositoryImpl(getFirstArgument(args));
         List<Player> players = playerRepository.getPlayers();
-        this.table = new Table(players);
+        if (players != null) {
+            this.roulette = new Roulette(players, new PlayerResultService());
+        } else {
+            System.out.println("Couldn't load players");
+            System.exit(0);
+        }
     }
 
     private String getFirstArgument(String[] args) {
@@ -33,24 +39,23 @@ public class Game {
     }
 
     public static void main(String[] args) throws IOException {
-        System.out.println("Console Table Game");
+        System.out.println("Console Roulette Game");
         System.out.println("Type 'quit' to exit the game");
         Game game = new Game(args);
         game.play();
     }
-
 
     private void play() throws IOException {
         Scanner scanner = new Scanner(System.in);
         boolean isRunning = true;
 
         while (isRunning) {
-            table.spin();
+            roulette.spin();
             final String line = scanner.nextLine();
             if (line.equals("quit")) {
                 isRunning = false;
             } else {
-                table.placeBet(line);
+                roulette.placeBet(line);
             }
         }
     }

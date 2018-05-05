@@ -1,13 +1,13 @@
-package com.gamesys.app.roulette.domain.model.player;
+package com.gamesys.app.domain.model.player;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Data
 @AllArgsConstructor
-@Getter
 public class Player {
 
     private final String name;
@@ -31,7 +31,6 @@ public class Player {
         if (list.size() == 3) {
             return new Player(list.get(0), Double.parseDouble(list.get(1)), Double.parseDouble(list.get(1)));
         } else {
-            // TODO: fix it
             return null;
         }
     }

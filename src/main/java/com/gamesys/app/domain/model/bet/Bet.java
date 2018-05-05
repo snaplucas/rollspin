@@ -1,6 +1,6 @@
-package com.gamesys.app.roulette.domain.model.bet;
+package com.gamesys.app.domain.model.bet;
 
-import com.gamesys.app.roulette.domain.model.player.Player;
+import com.gamesys.app.domain.model.player.Player;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
