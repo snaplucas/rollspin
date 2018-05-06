@@ -1,5 +1,6 @@
 package com.gamesys.app.repository;
 
+import com.gamesys.app.application.exceptions.PlayerException;
 import com.gamesys.app.domain.model.player.Player;
 import com.gamesys.app.domain.model.player.PlayerRepository;
 import lombok.AllArgsConstructor;
@@ -18,7 +19,7 @@ public class PlayerRepositoryImpl implements PlayerRepository {
     private final String playersFilePath;
 
     @Override
-    public List<Player> getPlayers() {
+    public List<Player> getPlayers() throws PlayerException {
         try {
             File file = new File(playersFilePath);
             Path path = Paths.get(file.toURI());
@@ -26,11 +27,10 @@ public class PlayerRepositoryImpl implements PlayerRepository {
             if (lines.size() > 0) {
                 return lines.stream().map(Player::buildPlayer).collect(Collectors.toList());
             }
-            return null;
+            throw new PlayerException("Could not load players file");
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new PlayerException("Error trying load players");
         }
-        return null;
     }
 
 }

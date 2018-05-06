@@ -1,4 +1,4 @@
-package com.gamesys.app.application;
+package com.gamesys.app.application.service;
 
 import com.gamesys.app.application.exceptions.BetException;
 import com.gamesys.app.application.service.BetService;

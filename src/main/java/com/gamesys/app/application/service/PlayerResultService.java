@@ -1,8 +1,8 @@
 package com.gamesys.app.application.service;
 
+import com.gamesys.app.application.dto.PlayerResultDto;
 import com.gamesys.app.domain.model.bet.*;
 import com.gamesys.app.domain.model.player.Outcome;
-import com.gamesys.app.application.dto.PlayerResultDto;
 
 import java.util.Arrays;
 import java.util.List;

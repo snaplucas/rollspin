@@ -5,7 +5,7 @@ import com.gamesys.app.application.dto.PlayerResultDto;
 
 import java.util.List;
 
-class RouletteResult {
+public class RouletteResult {
 
     private final String skipLine = "\n";
     private final String spaceBetweenWords = "       ";

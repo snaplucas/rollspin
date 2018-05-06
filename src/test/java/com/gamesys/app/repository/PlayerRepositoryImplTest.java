@@ -1,5 +1,6 @@
 package com.gamesys.app.repository;
 
+import com.gamesys.app.application.exceptions.PlayerException;
 import com.gamesys.app.domain.model.player.Player;
 import org.junit.Assert;
 import org.junit.Test;
@@ -12,7 +13,7 @@ import java.util.Objects;
 public class PlayerRepositoryImplTest {
 
     @Test
-    public void getPlayersSucess() throws URISyntaxException {
+    public void getPlayersSucess() throws URISyntaxException, PlayerException {
         String filePath = String.valueOf(Paths.get(getClass().getClassLoader().getResource("fileTest.txt").toURI()));
         PlayerRepositoryImpl playerRepository = new PlayerRepositoryImpl(filePath);
         List<Player> players = playerRepository.getPlayers();
@@ -21,12 +22,10 @@ public class PlayerRepositoryImplTest {
         Assert.assertTrue(players.stream().anyMatch(x -> Objects.equals(x.getName(), "Barbara")));
     }
 
-    @Test
-    public void getPlayersFail() throws URISyntaxException {
+    @Test(expected = PlayerException.class)
+    public void getPlayersFail() throws URISyntaxException, PlayerException {
         String filePath = String.valueOf(Paths.get(getClass().getClassLoader().getResource("fileError.txt").toURI()));
         PlayerRepositoryImpl playerRepository = new PlayerRepositoryImpl(filePath);
-        List<Player> players = playerRepository.getPlayers();
-
-        Assert.assertEquals(players, null);
+        playerRepository.getPlayers();
     }
 }

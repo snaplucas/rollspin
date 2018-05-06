@@ -1,14 +1,13 @@
-package com.gamesys.app.application;
+package com.gamesys.app.application.service;
 
-import com.gamesys.app.application.service.PlayerResultService;
+import com.gamesys.app.application.dto.PlayerResultDto;
 import com.gamesys.app.domain.model.bet.*;
 import com.gamesys.app.domain.model.player.Outcome;
 import com.gamesys.app.domain.model.player.Player;
-import com.gamesys.app.application.dto.PlayerResultDto;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class PlayerResultDtoServiceTest {
+public class PlayerResultServiceTest {
 
     private PlayerResultService playerResultService = new PlayerResultService();
 

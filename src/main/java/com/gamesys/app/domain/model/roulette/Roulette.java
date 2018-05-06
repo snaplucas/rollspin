@@ -4,11 +4,11 @@ import com.gamesys.app.application.dto.PlayerResultDto;
 import com.gamesys.app.application.exceptions.BetException;
 import com.gamesys.app.application.service.BetService;
 import com.gamesys.app.application.service.PlayerResultService;
+import com.gamesys.app.application.service.PlayerService;
 import com.gamesys.app.domain.model.bet.Bet;
 import com.gamesys.app.domain.model.player.Player;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executors;
@@ -19,21 +19,22 @@ import java.util.stream.Collectors;
 public class Roulette {
 
     private static final int MAX_ROULETTE_NUMBER = 36;
-    // TODO: change to 30s
-    private static final int INTERVAL = 10;
+    private static final int INTERVAL = 30;
 
     private List<Bet> betList = new CopyOnWriteArrayList<>();
     private List<Player> players;
     private final BetService betService;
     private final PlayerResultService playerResultService;
-    private final RouletteResult rouletteResult = new RouletteResult();
+    private final RouletteResult rouletteResult;
+    private final PlayerService playerService;
 
-    public Roulette(List<Player> players, PlayerResultService playerResultService) {
-        this.betService = new BetService(players);
+    public Roulette(List<Player> players, PlayerResultService playerResultService, PlayerService playerService) {
         this.players = players;
+        this.betService = new BetService(players);
         this.playerResultService = playerResultService;
+        this.playerService = playerService;
+        this.rouletteResult = new RouletteResult();
     }
-
 
     public void spin() {
         ScheduledExecutorService execService = Executors.newScheduledThreadPool(5);
@@ -43,7 +44,7 @@ public class Roulette {
             List<PlayerResultDto> playerResultDtos = getPlayerResults(resultNumber);
             showDefaultGameResult(resultNumber, playerResultDtos);
 
-            players = updatePlayerTotalWinAndBet(playerResultDtos);
+            players = playerService.getPlayerTotalWinAndBet(players, playerResultDtos, betList);
             showPlayersGameResult();
 
             betList.clear();
@@ -59,34 +60,13 @@ public class Roulette {
         return random.nextInt(MAX_ROULETTE_NUMBER + 1);
     }
 
-    // TODO: extract class
-    private List<Player> updatePlayerTotalWinAndBet(List<PlayerResultDto> playerResultDtos) {
-        List<Player> playerList = new CopyOnWriteArrayList<>(players);
-        System.out.println("Hey");
-
-        if (playerResultDtos.size() > 0) {
-            updatePlayerTotals(playerResultDtos, playerList);
-        }
-        System.out.println("You");
-        return playerList;
-    }
-
-    // TODO: fix this gambiarra
-    private void updatePlayerTotals(List<PlayerResultDto> playerResultDtos, List<Player> playerList) {
-        playerList.forEach(x -> x.setTotalWin(x.getTotalWin()
-                + playerResultDtos.stream()
-                .filter(y -> Objects.equals(y.getPlayerName(), x.getName())).findFirst().orElse(new PlayerResultDto()).getWinnings()));
-
-        playerList.forEach(x -> x.setTotalBet(x.getTotalBet()
-                + betList.stream()
-                .filter(y -> Objects.equals(y.getPlayer().getName(), x.getName())).findFirst().orElse(new Bet()).getAmount()));
-    }
-
     public void placeBet(String betLine) {
         try {
             Bet bet = betService.getBetFromLine(betLine);
             if (bet.isValidAmount()) {
                 betList.add(bet);
+            } else {
+                System.out.println("Invalid bet amount");
             }
         } catch (BetException e) {
             System.out.println(e.getMessage());
