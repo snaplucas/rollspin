@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class PlayerResultServiceTest {
 
-    private com.gamesys.application.interfaces.IPlayerResultService IPlayerResultService = new PlayerResultService();
+    private com.gamesys.domain.model.player.IPlayerResultService IPlayerResultService = new PlayerResultService();
 
     @Test
     public void getPlayerResultTest_01() {

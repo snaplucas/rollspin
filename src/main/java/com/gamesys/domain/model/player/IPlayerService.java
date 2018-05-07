@@ -1,4 +1,4 @@
-package com.gamesys.application.interfaces;
+package com.gamesys.domain.model.player;
 
 import com.gamesys.application.dto.PlayerResultDto;
 import com.gamesys.domain.model.bet.Bet;

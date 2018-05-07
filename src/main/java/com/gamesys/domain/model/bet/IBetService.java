@@ -1,7 +1,6 @@
-package com.gamesys.application.interfaces;
+package com.gamesys.domain.model.bet;
 
 import com.gamesys.application.exceptions.BetException;
-import com.gamesys.domain.model.bet.Bet;
 
 public interface IBetService {
 

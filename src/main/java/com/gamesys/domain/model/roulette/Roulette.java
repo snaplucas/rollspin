@@ -3,10 +3,10 @@ package com.gamesys.domain.model.roulette;
 import com.gamesys.application.dto.PlayerResultDto;
 import com.gamesys.application.exceptions.BetException;
 import com.gamesys.application.service.BetService;
-import com.gamesys.application.interfaces.IBetService;
-import com.gamesys.application.interfaces.IPlayerResultService;
-import com.gamesys.application.interfaces.IPlayerService;
 import com.gamesys.domain.model.bet.Bet;
+import com.gamesys.domain.model.bet.IBetService;
+import com.gamesys.domain.model.player.IPlayerResultService;
+import com.gamesys.domain.model.player.IPlayerService;
 import com.gamesys.domain.model.player.Player;
 
 import java.util.List;

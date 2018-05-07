@@ -1,7 +1,7 @@
 package com.gamesys.application.service;
 
 import com.gamesys.application.exceptions.BetException;
-import com.gamesys.application.interfaces.IBetService;
+import com.gamesys.domain.model.bet.IBetService;
 import com.gamesys.domain.model.bet.Bet;
 import com.gamesys.domain.model.bet.BetKind;
 import com.gamesys.domain.model.bet.BetKindFactory;

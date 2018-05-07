@@ -29,8 +29,7 @@ public class Player {
     private static Player getAllArgumentsPlayer(List<String> list) {
         if (list.size() == 3) {
             return new Player(list.get(0), Double.parseDouble(list.get(1)), Double.parseDouble(list.get(2)));
-        } else {
-            return null;
         }
+        return null;
     }
 }

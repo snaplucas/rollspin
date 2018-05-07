@@ -1,7 +1,7 @@
 package com.gamesys.application.service;
 
 import com.gamesys.application.dto.PlayerResultDto;
-import com.gamesys.application.interfaces.IPlayerService;
+import com.gamesys.domain.model.player.IPlayerService;
 import com.gamesys.domain.model.bet.Bet;
 import com.gamesys.domain.model.player.Player;
 
