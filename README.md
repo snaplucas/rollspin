@@ -1,6 +1,6 @@
-#Roulete Game
+# Roulete Game
 
-###Concepts applied
+### Concepts applied
 * Domain-Driven Design - using layered architecture (with domain model and application), service pattern, entities and value objects
 * SOLID
 * Clean Code
