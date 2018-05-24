@@ -24,16 +24,16 @@ public class Roulette {
 
     private List<Bet> betList = new CopyOnWriteArrayList<>();
     private List<Player> players;
-    private final IBetService IBetService;
-    private final IPlayerResultService IPlayerResultService;
-    private final IPlayerService IPlayerService;
+    private final IBetService betService;
+    private final IPlayerResultService playerResultService;
+    private final IPlayerService playerService;
     private final RouletteResult rouletteResult;
 
-    public Roulette(List<Player> players, IPlayerResultService IPlayerResultService, IPlayerService IPlayerService) {
+    public Roulette(List<Player> players, IPlayerResultService playerResultService, IPlayerService playerService) {
         this.players = players;
-        this.IBetService = new BetService(players);
-        this.IPlayerResultService = IPlayerResultService;
-        this.IPlayerService = IPlayerService;
+        this.betService = new BetService(players);
+        this.playerResultService = playerResultService;
+        this.playerService = playerService;
         this.rouletteResult = new RouletteResult();
     }
 
@@ -45,7 +45,7 @@ public class Roulette {
             List<PlayerResultDto> playerResultDtos = getPlayerResults(resultNumber);
             showDefaultGameResult(resultNumber, playerResultDtos);
 
-            players = IPlayerService.getPlayerTotalWinAndBet(players, playerResultDtos, betList);
+            players = playerService.getPlayerTotalWinAndBet(players, playerResultDtos, betList);
             showPlayersGameResult();
 
             betList.clear();
@@ -53,7 +53,7 @@ public class Roulette {
     }
 
     private List<PlayerResultDto> getPlayerResults(int resultNumber) {
-        return betList.stream().map(x -> IPlayerResultService.getPlayerResult(x, resultNumber)).collect(Collectors.toList());
+        return betList.stream().map(x -> playerResultService.getPlayerResult(x, resultNumber)).collect(Collectors.toList());
     }
 
     private int getResultNumber() {
@@ -63,7 +63,7 @@ public class Roulette {
 
     public void placeBet(String betLine) {
         try {
-            Bet bet = IBetService.getBetFromLine(betLine);
+            Bet bet = betService.getBetFromLine(betLine);
             if (bet.isValidAmount()) {
                 betList.add(bet);
             } else {
