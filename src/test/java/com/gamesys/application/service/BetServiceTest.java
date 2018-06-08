@@ -1,8 +1,8 @@
 package com.gamesys.application.service;
 
 import com.gamesys.application.exceptions.BetException;
-import com.gamesys.domain.model.bet.IBetService;
 import com.gamesys.domain.model.bet.Bet;
+import com.gamesys.domain.model.bet.IBetService;
 import com.gamesys.domain.model.bet.NumberBet;
 import com.gamesys.domain.model.player.Player;
 import org.junit.Assert;

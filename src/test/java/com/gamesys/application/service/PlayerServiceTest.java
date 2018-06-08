@@ -2,11 +2,11 @@ package com.gamesys.application.service;
 
 
 import com.gamesys.application.dto.PlayerResultDto;
-import com.gamesys.domain.model.player.IPlayerResultService;
-import com.gamesys.domain.model.player.IPlayerService;
 import com.gamesys.domain.model.bet.Bet;
 import com.gamesys.domain.model.bet.BetType;
 import com.gamesys.domain.model.bet.EvenOddBet;
+import com.gamesys.domain.model.player.IPlayerResultService;
+import com.gamesys.domain.model.player.IPlayerService;
 import com.gamesys.domain.model.player.Player;
 import org.junit.Assert;
 import org.junit.Test;

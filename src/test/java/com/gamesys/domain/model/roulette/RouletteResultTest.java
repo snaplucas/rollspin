@@ -1,8 +1,8 @@
 package com.gamesys.domain.model.roulette;
 
+import com.gamesys.application.dto.PlayerResultDto;
 import com.gamesys.domain.model.player.Outcome;
 import com.gamesys.domain.model.player.Player;
-import com.gamesys.application.dto.PlayerResultDto;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -15,8 +15,8 @@ public class RouletteResultTest {
 
     @Test
     public void getDefaultGameResultTest() {
-        List<PlayerResultDto> playerResultDtos = Arrays.asList(new PlayerResultDto("Tiki_Monkey", "2", Outcome.LOSE, 0.0)
-                , new PlayerResultDto("Barbara", "EVEN", Outcome.WIN, 6.0));
+        List<PlayerResultDto> playerResultDtos = Arrays.asList(new PlayerResultDto("Tiki_Monkey", "2", Outcome.LOSE, 0.0),
+                new PlayerResultDto("Barbara", "EVEN", Outcome.WIN, 6.0));
 
         String result = rouletteResult.getDefaultGameResult(playerResultDtos, 4);
         System.out.println(result);
@@ -24,8 +24,7 @@ public class RouletteResultTest {
 
     @Test
     public void getPlayerGameResultTest() {
-        List<Player> playerList = Arrays.asList(new Player("Tiki_Monkey", 1.0, 3.0)
-                , new Player("Barbara", 8.0, 4.0));
+        List<Player> playerList = Arrays.asList(new Player("Tiki_Monkey", 1.0, 3.0), new Player("Barbara", 8.0, 4.0));
 
         String result = rouletteResult.getPlayerGameResult(playerList);
         System.out.println(result);
